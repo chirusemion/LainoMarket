@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Product</h2>
+<form method="post">
+    <input type="text" name="name" placeholder="Name" value="{{ product.name }}" required>
+    <textarea name="description" placeholder="Description">{{ product.description }}</textarea>
+    <input type="number" step="0.01" name="price" placeholder="Price" value="{{ product.price }}" required>
+    <select name="unit_type">
+        {% for u in ALLOWED_UNIT_TYPES %}
+            <option value="{{ u }}" {% if product.unit_type == u %}selected{% endif %}>{{ u }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="unit_label" placeholder="Unit label (e.g., 1 kg, 1 bunch)" value="{{ product.unit_label }}">
+    <input type="number" step="0.01" name="stock_qty" placeholder="Stock Quantity" value="{{ product.stock_qty }}">
+    <label>
+        <input type="checkbox" name="in_stock" {% if product.in_stock %}checked{% endif %}> In Stock
+    </label>
+    <button type="submit">Update Product</button>
+</form>
+{% endblock %}
