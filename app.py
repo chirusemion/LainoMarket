@@ -28,10 +28,34 @@ class Product(db.Model):
     in_stock = db.Column(db.Boolean, default=True)
     farmer_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
-# ---------------- CREATE TABLES ----------------
-# This ensures the tables exist even if running via Render/Gunicorn
+# ---------------- CREATE TABLES & DEFAULT USERS ----------------
 with app.app_context():
     db.create_all()
+
+    # Pre-create 2 admins
+    admins = [
+        {"username": "admin1", "password": "admin123"},
+        {"username": "admin2", "password": "admin123"}
+    ]
+    for a in admins:
+        if not User.query.filter_by(username=a["username"]).first():
+            admin = User(username=a["username"], password=a["password"], role="admin")
+            db.session.add(admin)
+
+    # Pre-create 5 farmers
+    farmers = [
+        {"username": "farmer1", "password": "farmer123"},
+        {"username": "farmer2", "password": "farmer123"},
+        {"username": "farmer3", "password": "farmer123"},
+        {"username": "farmer4", "password": "farmer123"},
+        {"username": "farmer5", "password": "farmer123"}
+    ]
+    for f in farmers:
+        if not User.query.filter_by(username=f["username"]).first():
+            farmer = User(username=f["username"], password=f["password"], role="farmer")
+            db.session.add(farmer)
+
+    db.session.commit()
 
 # ---------------- ROUTES ----------------
 
