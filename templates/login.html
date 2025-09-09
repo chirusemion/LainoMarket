@@ -1,4 +1,4 @@
-k<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,18 +7,17 @@ k<!DOCTYPE html>
 </head>
 <body>
     <div class="login-container">
-        <h2>Login</h2>
-        <form method="POST">
+        <form method="POST" class="login-form">
+            <h2>Login</h2>
             <label>Username:</label>
             <input type="text" name="username" required>
             <label>Password:</label>
             <input type="password" name="password" required>
-            <button type="submit">Login</button>
+            <button type="submit" class="login-btn">Login</button>
+            {% if session.get('error') %}
+                <p class="error">{{ session.get('error') }}</p>
+            {% endif %}
         </form>
-        {% if session.get('error') %}
-            <p class="error">{{ session.get('error') }}</p>
-        {% endif %}
     </div>
 </body>
 </html>
-

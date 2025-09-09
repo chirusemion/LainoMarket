@@ -2,70 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard - LainoMarket</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-<header>
-    <h1>Dashboard</h1>
-</header>
+    <header>
+        <h1>Welcome to LainoMarket Dashboard</h1>
+    </header>
 
-<nav>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/logout">Logout</a>
-</nav>
+    {% if user.role in ['farmer', 'admin'] %}
+    <section>
+        <form method="POST" enctype="multipart/form-data" class="add-product-form">
+            <h2>Add Product</h2>
+            <label>Name:</label>
+            <input type="text" name="name" required>
 
-{% if user.role == 'farmer' %}
-<section class="add-product-form">
-    <h2>Add Product</h2>
-    <form action="/add_product" method="POST" enctype="multipart/form-data">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" required>
+            <label>Description:</label>
+            <textarea name="description" rows="4"></textarea>
 
-        <label for="description">Description:</label>
-        <textarea name="description" id="description" required></textarea>
+            <label>Price:</label>
+            <input type="number" step="0.01" name="price" required>
 
-        <label for="price">Price:</label>
-        <input type="number" step="0.01" name="price" id="price" required>
+            <label>Weight or Quantity:</label>
+            <input type="text" name="weight_or_quantity" placeholder="kg or pcs" required>
 
-        <label for="weight_or_quantity">Weight or Quantity:</label>
-        <input type="text" name="weight_or_quantity" id="weight_or_quantity" placeholder="kg or pcs" required>
+            <label>Image:</label>
+            <input type="file" name="image" accept="image/*" required>
 
-        <label for="image">Image:</label>
-        <input type="file" name="image" id="image" accept="image/*" required>
+            <button type="submit" class="btn">Add Product</button>
+        </form>
+    </section>
+    {% endif %}
 
-        <button type="submit" class="add-btn">Add Product</button>
-    </form>
-</section>
-{% endif %}
+    <section class="product-list">
+        <h2>Your Products</h2>
+        <div class="products">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='images/' + product.image_filename) }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: ₹{{ product.price }} per {{ product.weight_or_quantity }}</p>
+                <p>Status: {{ 'In Stock' if product.in_stock else 'Out of Stock' }}</p>
 
-<section class="product-list">
-    <h2>Your Products</h2>
-    <div class="products">
-        {% for product in products %}
-        <div class="product-card">
-            <img src="{{ url_for('static', filename='images/' + product.image_filename) }}" alt="{{ product.name }}">
-            <h3>{{ product.name }}</h3>
-            <p>{{ product.description }}</p>
-            <p>Price: ₹{{ product.price }} per {{ product.weight_or_quantity }}</p>
-            <p>Status: {{ 'In Stock' if product.in_stock else 'Out of Stock' }}</p>
-
-            {% if user.role == 'admin' %}
-            <div class="dashboard-btns">
-                <a href="{{ url_for('edit_product', product_id=product.id) }}" class="edit-btn">Edit</a>
-                <a href="{{ url_for('delete_product', product_id=product.id) }}" class="delete-btn" onclick="return confirm('Are you sure?')">Delete</a>
+                {% if user.role == 'admin' %}
+                <a href="{{ url_for('edit_product', product_id=product.id) }}" class="btn">Edit</a>
+                <a href="{{ url_for('delete_product', product_id=product.id) }}" class="btn" onclick="return confirm('Are you sure?')">Delete</a>
+                {% endif %}
             </div>
-            {% endif %}
+            {% else %}
+            <p>No products added yet.</p>
+            {% endfor %}
         </div>
-        {% else %}
-        <p>No products added yet.</p>
-        {% endfor %}
-    </div>
-</section>
-
-<footer>
-    &copy; {{ year }} Dashboard
-</footer>
+    </section>
 </body>
 </html>
