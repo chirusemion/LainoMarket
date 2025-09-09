@@ -15,7 +15,7 @@ html, body {
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 18px;            /* base font size bigger */
 }
 
 a {
@@ -30,39 +30,41 @@ img {
 }
 
 /* =========================
-   HEADER / NAVIGATION
+   HEADER / STORE NAME
 ========================= */
 header {
     background-color: #4CAF50;
-    padding: 20px 10px;
+    padding: 30px 10px;        /* bigger padding */
     text-align: center;
     width: 100%;
 }
 
 header h1 {
-    font-size: clamp(2rem, 6vw, 3rem); /* auto-scale with screen */
+    font-size: clamp(3rem, 10vw, 6rem); /* bigger responsive store name */
     color: white;
-    margin-bottom: 10px;
-    word-wrap: break-word;     /* avoid overflow */
-    line-height: 1.2;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+    line-height: 1.1;
 }
 
+/* NAVIGATION */
 nav {
-    margin-top: 10px;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px;
 }
 
 nav a {
     color: white;
-    padding: 10px 15px;
+    padding: 12px 20px;         /* bigger buttons */
     background-color: #388E3C;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: bold;
-    transition: background 0.3s;
+    font-size: 1.1rem;          /* bigger font */
     flex-shrink: 0;
+    transition: background 0.3s;
 }
 
 nav a:hover {
@@ -73,42 +75,42 @@ nav a:hover {
    LOGIN FORM
 ========================= */
 .login-container {
-    max-width: 400px;
+    max-width: 500px;
     width: 95%;
-    margin: 40px auto;
-    padding: 30px;
+    margin: 50px auto;          /* more spacing */
+    padding: 40px;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 .login-container h2 {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: clamp(1.8rem, 5vw, 2rem);
+    margin-bottom: 25px;
+    font-size: clamp(2.5rem, 8vw, 4rem); /* bigger title */
     word-wrap: break-word;
 }
 
 .login-container input[type="text"],
 .login-container input[type="password"] {
     width: 100%;
-    padding: 15px;
-    margin: 10px 0;
+    padding: 18px;              /* bigger input fields */
+    margin: 12px 0;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
 }
 
 .login-container button {
     width: 100%;
-    padding: 15px;
+    padding: 18px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
+    border-radius: 10px;
+    font-size: 1.4rem;          /* bigger button text */
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 12px;
     transition: background 0.3s;
 }
 
@@ -117,75 +119,84 @@ nav a:hover {
 }
 
 /* =========================
-   PRODUCT GRID
+   PRODUCT GRID / DASHBOARDS
 ========================= */
-.products-container {
+.products-container,
+.dashboard-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 15px;
-    padding: 20px;
-    width: 100%;             /* crop horizontally */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* bigger cards */
+    gap: 20px;
+    padding: 25px;
+    width: 100%;
 }
 
-.product-card {
+.product-card,
+.dashboard-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.product-card img {
-    height: 180px;
+.product-card img,
+.dashboard-card img {
+    height: 220px;              /* taller images */
     object-fit: cover;
-    width: 100%;             /* crop image horizontally */
+    width: 100%;
 }
 
-.product-info {
-    padding: 15px;
+.product-info,
+.dashboard-info {
+    padding: 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.product-info h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+.product-info h3,
+.dashboard-info h3 {
+    font-size: 1.5rem;          /* bigger product/farmer/admin title */
+    margin-bottom: 12px;
     color: #2E7D32;
     word-wrap: break-word;
 }
 
-.product-info p {
-    font-size: 1rem;
-    margin-bottom: 5px;
+.product-info p,
+.dashboard-info p {
+    font-size: 1.2rem;          /* bigger text */
+    margin-bottom: 8px;
 }
 
-.product-info .price {
+.product-info .price,
+.dashboard-info .status {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: #000;
 }
 
 /* =========================
-   ORDER BUTTON
+   ORDER BUTTON / DASHBOARD BUTTONS
 ========================= */
-.order-btn {
+.order-btn,
+.dashboard-btn {
     background-color: #FF9800;
     color: white;
-    padding: 12px;
+    padding: 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
-    font-size: 1.1rem;
-    margin-top: 10px;
+    font-size: 1.3rem;          /* bigger buttons */
+    margin-top: 12px;
     cursor: pointer;
     transition: background 0.3s;
 }
 
-.order-btn:hover {
+.order-btn:hover,
+.dashboard-btn:hover {
     background-color: #F57C00;
 }
 
@@ -194,53 +205,76 @@ nav a:hover {
 ========================= */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 25px;
     background-color: #4CAF50;
     color: white;
-    margin-top: 40px;
+    margin-top: 50px;
     width: 100%;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     header h1 {
-        font-size: clamp(1.8rem, 7vw, 2.5rem);
+        font-size: clamp(2.8rem, 9vw, 5rem);
     }
+    .product-card img,
+    .dashboard-card img {
+        height: 180px;
+    }
+}
 
+@media screen and (max-width: 768px) {
     nav a {
-        padding: 8px 12px;
-        font-size: 0.9rem;
+        padding: 10px 15px;
+        font-size: 1rem;
     }
-
-    .product-card img {
-        height: 150px;
+    .product-card img,
+    .dashboard-card img {
+        height: 160px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    body {
-        font-size: 15px;
+    html, body {
+        font-size: 16px;
+    }
+
+    header h1 {
+        font-size: clamp(2.5rem, 10vw, 4rem);
     }
 
     .login-container h2 {
-        font-size: clamp(1.5rem, 6vw, 1.8rem);
+        font-size: clamp(2rem, 8vw, 3rem);
     }
 
     .login-container input[type="text"],
     .login-container input[type="password"],
-    .login-container button {
-        padding: 12px;
-        font-size: 1rem;
+    .login-container button,
+    .order-btn,
+    .dashboard-btn {
+        padding: 14px;
+        font-size: 1.2rem;
     }
 
-    .product-card img {
-        height: 120px;
+    .product-card img,
+    .dashboard-card img {
+        height: 140px;
     }
 
-    .order-btn {
-        font-size: 1rem;
-        padding: 10px;
+    .product-info h3,
+    .dashboard-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .product-info p,
+    .dashboard-info p {
+        font-size: 1.1rem;
+    }
+
+    .product-info .price,
+    .dashboard-info .status {
+        font-size: 1.2rem;
     }
 }
