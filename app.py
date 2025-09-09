@@ -11,7 +11,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///market.db"
 app.config["UPLOAD_FOLDER"] = os.path.join("static", "images")
 db = SQLAlchemy(app)
 
-# Models
+# ---------------- MODELS ----------------
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
@@ -27,6 +27,11 @@ class Product(db.Model):
     image_filename = db.Column(db.String(200), nullable=False)
     in_stock = db.Column(db.Boolean, default=True)
     farmer_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+
+# ---------------- CREATE TABLES ----------------
+# This ensures the tables exist even if running via Render/Gunicorn
+with app.app_context():
+    db.create_all()
 
 # ---------------- ROUTES ----------------
 
@@ -154,6 +159,4 @@ def delete_product(product_id):
 
 # ---------------- MAIN ----------------
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
