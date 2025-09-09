@@ -1,35 +1,41 @@
-{% extends 'base.html' %}
-
-{% block title %}Home - LainoMarket{% endblock %}
-
-{% block content %}
-<section class="hero">
-    <div class="hero-text">
-        <h2>Fresh Vegetables and Fruits from Local Farmers</h2>
-        <p>Order online and get it delivered directly from the farm to your doorstep.</p>
-        <a href="https://wa.me/1234567890" class="btn order-btn">Order Now via WhatsApp</a>
-    </div>
-    <div class="hero-image">
-        <img src="{{ url_for('static', filename='images/farm-fresh.jpg') }}" alt="Fresh Produce">
-    </div>
-</section>
-
-<section class="products-section">
-    <h2>Our Products</h2>
-    <div class="products-grid">
-        {% for product in products %}
-        <div class="product-card">
-            <img src="{{ url_for('static', filename='images/' + product.image_filename) }}" alt="{{ product.name }}">
-            <h3>{{ product.name }}</h3>
-            <p>{{ product.weight_or_quantity }}</p>
-            <p>₹{{ product.price }}</p>
-            {% if product.in_stock %}
-            <a href="https://wa.me/1234567890?text=I want to order {{ product.name }}" class="btn order-btn">Order via WhatsApp</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LainoMarket - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to LainoMarket</h1>
+        <nav>
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
             {% else %}
-            <span class="out-of-stock">Out of Stock</span>
+                <a href="{{ url_for('login') }}">Login</a>
             {% endif %}
+        </nav>
+    </header>
+
+    <section class="product-list">
+        <h2>Available Products</h2>
+        <div class="products">
+            {% for product in products %}
+            <div class="product-card">
+                <img src="{{ url_for('static', filename='images/' + product.image_filename) }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: ₹{{ product.price }} per {{ product.weight_or_quantity }}</p>
+                <p>Status: {{ 'In Stock' if product.in_stock else 'Out of Stock' }}</p>
+
+                <!-- WhatsApp Order Button -->
+                <a href="https://wa.me/918794XXXXXX?text=I want to order {{ product.name }}" class="btn">Order via WhatsApp</a>
+            </div>
+            {% else %}
+            <p>No products available right now.</p>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-</section>
-{% endblock %}
+    </section>
+</body>
+</html>

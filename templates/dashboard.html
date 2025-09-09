@@ -7,18 +7,21 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to LainoMarket Dashboard</h1>
+        <h1>LainoMarket Dashboard</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </nav>
     </header>
 
-    {% if user.role in ['farmer', 'admin'] %}
-    <section>
-        <form method="POST" enctype="multipart/form-data" class="add-product-form">
-            <h2>Add Product</h2>
+    <section class="add-product-form">
+        <h2>Add a New Product</h2>
+        <form method="POST" enctype="multipart/form-data">
             <label>Name:</label>
             <input type="text" name="name" required>
 
             <label>Description:</label>
-            <textarea name="description" rows="4"></textarea>
+            <textarea name="description"></textarea>
 
             <label>Price:</label>
             <input type="number" step="0.01" name="price" required>
@@ -29,10 +32,9 @@
             <label>Image:</label>
             <input type="file" name="image" accept="image/*" required>
 
-            <button type="submit" class="btn">Add Product</button>
+            <button type="submit">Add Product</button>
         </form>
     </section>
-    {% endif %}
 
     <section class="product-list">
         <h2>Your Products</h2>
@@ -46,8 +48,8 @@
                 <p>Status: {{ 'In Stock' if product.in_stock else 'Out of Stock' }}</p>
 
                 {% if user.role == 'admin' %}
-                <a href="{{ url_for('edit_product', product_id=product.id) }}" class="btn">Edit</a>
-                <a href="{{ url_for('delete_product', product_id=product.id) }}" class="btn" onclick="return confirm('Are you sure?')">Delete</a>
+                    <a href="{{ url_for('edit_product', product_id=product.id) }}" class="btn">Edit</a>
+                    <a href="{{ url_for('delete_product', product_id=product.id) }}" class="btn" onclick="return confirm('Are you sure?')">Delete</a>
                 {% endif %}
             </div>
             {% else %}
