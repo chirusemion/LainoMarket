@@ -9,13 +9,13 @@
 }
 
 html, body {
-    width: 100%;               /* crop horizontally */
-    overflow-x: hidden;         /* prevent horizontal scroll */
-    overflow-y: auto;           /* vertical scroll enabled */
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: #f9f9f9;
     color: #333;
     line-height: 1.6;
-    font-size: 18px;            /* base font size bigger */
+    font-size: 18px;
 }
 
 a {
@@ -26,21 +26,21 @@ a {
 img {
     max-width: 100%;
     display: block;
-    object-fit: cover;          /* crop images horizontally */
+    object-fit: cover;
 }
 
 /* =========================
-   HEADER / STORE NAME
+   HEADER
 ========================= */
 header {
     background-color: #4CAF50;
-    padding: 30px 10px;        /* bigger padding */
+    padding: 30px 10px;
     text-align: center;
     width: 100%;
 }
 
 header h1 {
-    font-size: clamp(3rem, 10vw, 6rem); /* bigger responsive store name */
+    font-size: clamp(3rem, 10vw, 6rem);
     color: white;
     margin-bottom: 15px;
     word-wrap: break-word;
@@ -58,11 +58,11 @@ nav {
 
 nav a {
     color: white;
-    padding: 12px 20px;         /* bigger buttons */
+    padding: 14px 22px;
     background-color: #388E3C;
     border-radius: 6px;
     font-weight: bold;
-    font-size: 1.1rem;          /* bigger font */
+    font-size: 1.2rem;
     flex-shrink: 0;
     transition: background 0.3s;
 }
@@ -72,132 +72,149 @@ nav a:hover {
 }
 
 /* =========================
-   LOGIN FORM
+   ADD PRODUCT FORM (Farmers)
 ========================= */
-.login-container {
-    max-width: 500px;
+.add-product-form {
+    max-width: 550px;
     width: 95%;
-    margin: 50px auto;          /* more spacing */
-    padding: 40px;
-    background: white;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-.login-container h2 {
+.add-product-form h2 {
     text-align: center;
-    margin-bottom: 25px;
-    font-size: clamp(2.5rem, 8vw, 4rem); /* bigger title */
-    word-wrap: break-word;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+.add-product-form label {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.add-product-form input[type="text"],
+.add-product-form input[type="number"],
+.add-product-form input[type="file"],
+.add-product-form textarea {
     width: 100%;
-    padding: 18px;              /* bigger input fields */
-    margin: 12px 0;
-    border: 1px solid #ccc;
+    padding: 16px;
     border-radius: 10px;
-    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
 }
 
-.login-container button {
+.add-product-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.add-product-form .add-btn {
     width: 100%;
     padding: 18px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-radius: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 1.4rem;          /* bigger button text */
+    margin-top: 15px;
     cursor: pointer;
-    margin-top: 12px;
     transition: background 0.3s;
 }
 
-.login-container button:hover {
+.add-product-form .add-btn:hover {
     background-color: #388E3C;
 }
 
 /* =========================
-   PRODUCT GRID / DASHBOARDS
+   PRODUCT LIST (Farmers & Admins)
 ========================= */
-.products-container,
-.dashboard-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* bigger cards */
-    gap: 20px;
-    padding: 25px;
-    width: 100%;
-}
-
-.product-card,
-.dashboard-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.product-card img,
-.dashboard-card img {
-    height: 220px;              /* taller images */
-    object-fit: cover;
-    width: 100%;
-}
-
-.product-info,
-.dashboard-info {
+.product-list {
+    max-width: 1100px;
+    margin: 30px auto;
     padding: 20px;
-    flex: 1;
+}
+
+.product-list h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.products {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 25px;
 }
 
-.product-info h3,
-.dashboard-info h3 {
-    font-size: 1.5rem;          /* bigger product/farmer/admin title */
-    margin-bottom: 12px;
+.product-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-card img {
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    font-size: 2rem;
     color: #2E7D32;
-    word-wrap: break-word;
 }
 
-.product-info p,
-.dashboard-info p {
-    font-size: 1.2rem;          /* bigger text */
-    margin-bottom: 8px;
+.product-card p {
+    font-size: 1.4rem;
 }
 
-.product-info .price,
-.dashboard-info .status {
+.dashboard-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.edit-btn, .delete-btn {
+    flex: 1;
+    padding: 16px;
+    font-size: 1.4rem;
     font-weight: bold;
-    font-size: 1.3rem;
-    color: #000;
-}
-
-/* =========================
-   ORDER BUTTON / DASHBOARD BUTTONS
-========================= */
-.order-btn,
-.dashboard-btn {
-    background-color: #FF9800;
-    color: white;
-    padding: 15px;
-    border: none;
     border-radius: 10px;
-    text-align: center;
-    font-size: 1.3rem;          /* bigger buttons */
-    margin-top: 12px;
+    border: none;
     cursor: pointer;
+    text-align: center;
     transition: background 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.order-btn:hover,
-.dashboard-btn:hover {
-    background-color: #F57C00;
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #388E3C;
+}
+
+.delete-btn {
+    background-color: #F44336;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #D32F2F;
 }
 
 /* =========================
@@ -217,64 +234,43 @@ footer {
 ========================= */
 @media screen and (max-width: 1024px) {
     header h1 {
-        font-size: clamp(2.8rem, 9vw, 5rem);
+        font-size: clamp(2rem, 8vw, 4rem);
     }
-    .product-card img,
-    .dashboard-card img {
-        height: 180px;
+
+    .add-product-form h2,
+    .product-list h2 {
+        font-size: 1.8rem;
+    }
+
+    .add-product-form label,
+    .product-card h3,
+    .product-card p,
+    .edit-btn,
+    .delete-btn,
+    .add-product-form input,
+    .add-product-form textarea,
+    .add-product-form .add-btn {
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 12px 18px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    nav a {
-        padding: 10px 15px;
-        font-size: 1rem;
+    .products {
+        gap: 20px;
     }
-    .product-card img,
-    .dashboard-card img {
-        height: 160px;
+    
+    .product-card img {
+        max-height: 200px;
     }
-}
-
-@media screen and (max-width: 480px) {
-    html, body {
-        font-size: 16px;
-    }
-
-    header h1 {
-        font-size: clamp(2.5rem, 10vw, 4rem);
-    }
-
-    .login-container h2 {
-        font-size: clamp(2rem, 8vw, 3rem);
-    }
-
-    .login-container input[type="text"],
-    .login-container input[type="password"],
-    .login-container button,
-    .order-btn,
-    .dashboard-btn {
-        padding: 14px;
-        font-size: 1.2rem;
-    }
-
-    .product-card img,
-    .dashboard-card img {
-        height: 140px;
-    }
-
-    .product-info h3,
-    .dashboard-info h3 {
-        font-size: 1.3rem;
-    }
-
-    .product-info p,
-    .dashboard-info p {
+    
+    .edit-btn, .delete-btn, .add-product-form .add-btn {
         font-size: 1.1rem;
-    }
-
-    .product-info .price,
-    .dashboard-info .status {
-        font-size: 1.2rem;
+        padding: 10px;
     }
 }
