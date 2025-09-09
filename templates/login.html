@@ -1,9 +1,24 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>Login</h2>
-<form method="POST">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-</form>
-{% endblock %}
+k<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - LainoMarket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        {% if session.get('error') %}
+            <p class="error">{{ session.get('error') }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+

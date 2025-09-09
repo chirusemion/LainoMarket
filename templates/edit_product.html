@@ -1,20 +1,30 @@
-{% extends "base.html" %}
-{% block content %}
-<h2>Edit Product</h2>
-<form method="post">
-    <input type="text" name="name" placeholder="Name" value="{{ product.name }}" required>
-    <textarea name="description" placeholder="Description">{{ product.description }}</textarea>
-    <input type="number" step="0.01" name="price" placeholder="Price" value="{{ product.price }}" required>
-    <select name="unit_type">
-        {% for u in ALLOWED_UNIT_TYPES %}
-            <option value="{{ u }}" {% if product.unit_type == u %}selected{% endif %}>{{ u }}</option>
-        {% endfor %}
-    </select>
-    <input type="text" name="unit_label" placeholder="Unit label (e.g., 1 kg, 1 bunch)" value="{{ product.unit_label }}">
-    <input type="number" step="0.01" name="stock_qty" placeholder="Stock Quantity" value="{{ product.stock_qty }}">
-    <label>
-        <input type="checkbox" name="in_stock" {% if product.in_stock %}checked{% endif %}> In Stock
-    </label>
-    <button type="submit">Update Product</button>
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product - LainoMarket</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Edit Product</h1>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </header>
+
+    <div class="add-product">
+        <form method="POST" enctype="multipart/form-data">
+            <label>Name:</label>
+            <input type="text" name="name" value="{{ product.name }}" required>
+            <label>Description:</label>
+            <textarea name="description">{{ product.description }}</textarea>
+            <label>Price:</label>
+            <input type="number" step="0.01" name="price" value="{{ product.price }}" required>
+            <label>Weight or Quantity:</label>
+            <input type="text" name="weight_or_quantity" value="{{ product.weight_or_quantity }}" required>
+            <label>Image (leave blank to keep current):</label>
+            <input type="file" name="image" accept="image/*">
+            <button type="submit">Update Product</button>
+        </form>
+    </div>
+</body>
+</html>
