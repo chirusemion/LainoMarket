@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LainoMarket - Fresh Vegetables</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -20,8 +21,14 @@
                 <h3>{{ product.name }}</h3>
                 <p>{{ product.description }}</p>
                 <p>Price: ₹{{ product.price }} per {{ product.weight_or_quantity }}</p>
-                <!-- WhatsApp order button with your number -->
-                <a href="https://wa.me/918132975003?text=I%20want%20to%20order%20{{ product.name }}" class="order-btn">Order via WhatsApp</a>
+                
+                <!-- WhatsApp order button -->
+                <a 
+                   href="https://wa.me/918132975003?text=I%20want%20to%20order%20{{ product.name }}%20(%20{{ product.weight_or_quantity }}%20)%20for%20₹{{ product.price }}" 
+                   target="_blank" 
+                   class="order-btn">
+                   Order via WhatsApp
+                </a>
             </div>
             {% else %}
             <p>No products available.</p>
