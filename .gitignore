@@ -1,0 +1,11 @@
+# Ignore database and uploaded images
+/data/market.db
+/data/images/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
