@@ -1,5 +1,8 @@
-# Ignore database and uploaded images
+# Database
 /data/market.db
+*.sqlite3
+
+# Uploaded images
 /data/images/
 
 # Python cache
@@ -7,5 +10,28 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# Virtual environments
 env/
 venv/
+musicAI/
+
+# Flask instance folder
+instance/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Secrets or config files
+*.env
+config.py
+*.key
+*.pem
