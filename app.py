@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
+from urllib.parse import quote_plus
 
 # ---------------- APP SETUP ----------------
 app = Flask(__name__)
@@ -20,6 +21,12 @@ os.makedirs(IMG_FOLDER, exist_ok=True)
 
 db = SQLAlchemy(app)
 
+# ---------------- JINJA FILTER ----------------
+@app.template_filter('urlencode')
+def urlencode_filter(s):
+    """URL-encode text for WhatsApp messages"""
+    return quote_plus(str(s))
+
 # ---------------- MODELS ----------------
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,6 +43,8 @@ class Product(db.Model):
     image_filename = db.Column(db.String(200), nullable=False)
     in_stock = db.Column(db.Boolean, default=True)
     farmer_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    # Optional: for multiple farmers in future
+    # farmer_number = db.Column(db.String(20), nullable=False)
 
 # ---------------- CREATE TABLES & DEFAULT USERS ----------------
 with app.app_context():

@@ -2,40 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LainoMarket - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LainoMarket - Fresh Vegetables</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <header>
-        <h1>Welcome to LainoMarket</h1>
-        <nav>
-            {% if session.get('user_id') %}
-                <a href="{{ url_for('dashboard') }}">Dashboard</a>
-                <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
-            {% else %}
-                <a href="{{ url_for('login') }}">Login</a>
-            {% endif %}
-        </nav>
+        <h1>LainoMarket</h1>
+        <a href="{{ url_for('login') }}">Login</a>
     </header>
 
-    <section class="product-list">
-        <h2>Available Products</h2>
+    <main>
+        <h2>Available Vegetables</h2>
         <div class="products">
             {% for product in products %}
-            <div class="product-card">
-                <img src="{{ url_for('static', filename='images/' + product.image_filename) }}" alt="{{ product.name }}">
-                <h3>{{ product.name }}</h3>
-                <p>{{ product.description }}</p>
-                <p>Price: ₹{{ product.price }} per {{ product.weight_or_quantity }}</p>
-                <p>Status: {{ 'In Stock' if product.in_stock else 'Out of Stock' }}</p>
+                <div class="product-card">
+                    <img src="{{ url_for('static', filename='images/' + product.image_filename) }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.description }}</p>
+                    <p>Price: ₹{{ product.price }} per {{ product.weight_or_quantity }}</p>
 
-                <!-- WhatsApp Order Button -->
-                <a href="https://wa.me/918794XXXXXX?text=I want to order {{ product.name }}" class="btn">Order via WhatsApp</a>
-            </div>
+                    <!-- WhatsApp order button -->
+                    <a
+                        href="https://wa.me/918132975003?text={{ ('I want to order ' ~ product.name ~ ' (' ~ product.weight_or_quantity ~ ')') | urlencode }}"
+                        target="_blank"
+                        class="order-btn">
+                        Order via WhatsApp
+                    </a>
+                </div>
             {% else %}
-            <p>No products available right now.</p>
+                <p>No products available.</p>
             {% endfor %}
         </div>
-    </section>
+    </main>
 </body>
 </html>
