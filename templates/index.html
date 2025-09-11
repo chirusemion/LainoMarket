@@ -21,15 +21,13 @@
                 <h3>{{ product.name }}</h3>
                 <p>{{ product.description }}</p>
                 <p>Price: ₹{{ product.price }} per {{ product.weight_or_quantity }}</p>
-
                 <!-- WhatsApp order button -->
                 <a
-                    href="https://wa.me/918132975003?text={{ ('I want to order ' ~ product.name ~ ' (' ~ product.weight_or_quantity ~ ')') | url_encode }}"
+                    href="https://wa.me/918132975003?text={{ ('I want to order ' ~ product.name ~ ' (' ~ product.weight_or_quantity ~ ')') | urlencode }}"
                     target="_blank"
                     class="order-btn">
                     Order via WhatsApp
                 </a>
-
             </div>
             {% else %}
             <p>No products available.</p>
